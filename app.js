@@ -4,54 +4,48 @@ let msg = document.getElementById("msg");
 let posts = document.getElementById("posts");
 
 form.addEventListener("submit", (e) => {
-    e.preventDefault()
-  console.log("button clicked")
+    e.preventDefault();
+    console.log("button clicked")
+    Validator()
+});
 
-    Validation();
-})
+let Validator = () => {
 
-
-let Validation = () => {
-    if (input.value === ""){
-         console.log("failure")
-         msg.innerHTML = "Cannot be blank"
-        
-    }else {
+    if(input.value === ""){ 
+        console.log("error")
+        msg.innerHTML = "Your Form cannot be blank"
+    }else{
         console.log("sucesses")
         msg.innerHTML = "";
-
-        acceptData()
+        acceptData();
     }
-};
+}
 
-
-
-let data = {};
-let acceptData = () => {
+let data = {}; 
+let  acceptData = () => {
     data["text"] = input.value
-    console.log(data);
+    console.log(data)
 
-    createPost()
-};
+    createForm()
+}
 
-
-let createPost = () => {
+let createForm = () => {
     posts.innerHTML += `
     <div>
     <p>${data.text}</p>
     <span class="options">
-        <i onClick="editPost(this)" class="fa-regular fa-pen-to-square"></i>
-        <i onClick="deletePost(this)" class="fa-solid fa-trash"></i>
+        <i onClick="modifyForm(this)" class="fa-regular fa-pen-to-square"></i>
+        <i onClick="deleteForm(this)" class="fa-solid fa-trash"></i>
     </span>
-</div>
-    ` ;
+</div>`
 }
 
-let deletePost = (e) => {
+let deleteForm = (e) => {
     e.parentElement.parentElement.remove()
 }
 
-let editPost = (e) => {
+let modifyForm = (e) => {
     input.value = e.parentElement.previousElementSibling.innerHTML;
-    e.parentElement.parentElement.remove();
-}
+
+    e.parentElement.parentElement.remove()
+}   
