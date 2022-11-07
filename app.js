@@ -30,5 +30,28 @@ let data = {};
 let acceptData = () => {
     data["text"] = input.value
     console.log(data);
+
+    createPost()
 };
 
+
+let createPost = () => {
+    posts.innerHTML += `
+    <div>
+    <p>${data.text}</p>
+    <span class="options">
+        <i onClick="editPost(this)" class="fa-regular fa-pen-to-square"></i>
+        <i onClick="deletePost(this)" class="fa-solid fa-trash"></i>
+    </span>
+</div>
+    ` ;
+}
+
+let deletePost = (e) => {
+    e.parentElement.parentElement.remove()
+}
+
+let editPost = (e) => {
+    input.value = e.parentElement.previousElementSibling.innerHTML;
+    e.parentElement.parentElement.remove();
+}
